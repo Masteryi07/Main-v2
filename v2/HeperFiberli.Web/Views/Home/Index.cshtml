@@ -1,0 +1,111 @@
+@model HomeViewModel
+@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<section class="hf-hero" id="hero">
+    <div class="hf-hero-content">
+        <p class="hf-kicker">Akıllı Dış Aydınlatma</p>
+        <h1>Şehirlerin kimliğini ışıkla yeniden tasarlıyoruz.</h1>
+        <p class="hf-muted">Yol, mimari, endüstriyel ve peyzaj projelerinde enerji verimli, güvenli ve estetik aydınlatma çözümleri sunuyoruz.</p>
+        <div class="hf-actions">
+            <a class="hf-button" href="#projects">Projeleri Keşfet</a>
+            <a class="hf-button ghost" href="/products">Ürün Kataloğu</a>
+        </div>
+    </div>
+    <div class="hf-hero-panel" id="about">
+        <div class="hf-badge">Canlı</div>
+        <p class="hf-muted">Gerçek verilerle dolu bir örnek proje. Tüm içerik veritabanından beslenir ve uygulama açılır açılmaz hazırdır.</p>
+        <div class="hf-grid mini">
+            <div>
+                <span class="hf-label">Kategoriler</span>
+                <p class="hf-number">@Model.Categories.Count</p>
+            </div>
+            <div>
+                <span class="hf-label">Ürünler</span>
+                <p class="hf-number">@Model.Products.Count</p>
+            </div>
+            <div>
+                <span class="hf-label">Projeler</span>
+                <p class="hf-number">@Model.Projects.Count</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="hf-section" id="categories">
+    <div class="hf-section-header">
+        <div>
+            <p class="hf-kicker">Koleksiyonlar</p>
+            <h2>Öne çıkan kategoriler</h2>
+        </div>
+        <a class="hf-link" href="/products">Ürün kataloğuna git</a>
+    </div>
+    <div class="hf-grid">
+        @foreach (var category in Model.Categories)
+        {
+            <div class="hf-card">
+                <p class="hf-label">@category.Slug</p>
+                <h3>@category.Name</h3>
+                <p class="hf-muted">@category.Description</p>
+                <a class="hf-link" href="@Url.Action("Index", "Products", new { categorySlug = category.Slug })">Kategori ürünleri</a>
+            </div>
+        }
+    </div>
+</section>
+
+<section class="hf-section" id="products">
+    <div class="hf-section-header">
+        <div>
+            <p class="hf-kicker">Ürünler</p>
+            <h2>Amiral ürünler</h2>
+        </div>
+        <a class="hf-link" href="/products">Tüm ürünler</a>
+    </div>
+    <div class="hf-grid">
+        @foreach (var product in Model.Products)
+        {
+            <div class="hf-card">
+                <div class="hf-card-top">
+                    <span class="hf-chip">@product.Category?.Name</span>
+                    <span class="hf-chip ghost">@product.Code</span>
+                </div>
+                <h3>@product.Name</h3>
+                <p class="hf-muted">@product.ShortDescription</p>
+                <div class="hf-meta">
+                    <span>@product.Watt W</span>
+                    <span>@product.Lumen lm</span>
+                </div>
+                <a class="hf-link" href="@Url.Action("Details", "Products", new { id = product.Id })">Detayları incele</a>
+            </div>
+        }
+    </div>
+</section>
+
+<section class="hf-section" id="projects">
+    <div class="hf-section-header">
+        <div>
+            <p class="hf-kicker">Projeler</p>
+            <h2>Seçili referanslar</h2>
+        </div>
+        <a class="hf-link" href="/projects">Tüm projeler</a>
+    </div>
+    <div class="hf-grid">
+        @foreach (var project in Model.Projects)
+        {
+            <div class="hf-card">
+                <div class="hf-card-top">
+                    <span class="hf-chip">@project.City</span>
+                    <span class="hf-chip ghost">@project.Country</span>
+                </div>
+                <h3>@project.Name</h3>
+                <p class="hf-muted">@project.Description</p>
+                <div class="hf-meta">
+                    <span>Müşteri: @project.CustomerName</span>
+                    <span>Yıl: @project.CompletionYear</span>
+                </div>
+                <a class="hf-link" href="@Url.Action("Details", "Projects", new { id = project.Id })">Proje detayı</a>
+            </div>
+        }
+    </div>
+</section>

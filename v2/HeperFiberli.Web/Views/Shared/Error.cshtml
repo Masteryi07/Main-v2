@@ -1,0 +1,16 @@
+@model ErrorViewModel
+@{
+    ViewData["Title"] = "Bir hata oluştu";
+}
+
+<section class="hf-section">
+    <div class="hf-card">
+        <h1>Bir hata oluştu.</h1>
+        <p class="hf-muted">Beklenmedik bir durum yaşandı. Lütfen tekrar deneyin.</p>
+        @if (Model.ShowRequestId)
+        {
+            <p class="hf-muted">Takip Kodu: <strong>@Model.RequestId</strong></p>
+        }
+        <a class="hf-button" href="/">Ana Sayfaya Dön</a>
+    </div>
+</section>
