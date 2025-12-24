@@ -1,0 +1,37 @@
+@model Project
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<section class="hf-section">
+    <div class="hf-breadcrumb">
+        <a href="/">Ana sayfa</a>
+        <span>/</span>
+        <a href="/projects">Projeler</a>
+        <span>/</span>
+        <span>@Model.Name</span>
+    </div>
+
+    <div class="hf-detail">
+        <div>
+            <p class="hf-kicker">@Model.City, @Model.Country</p>
+            <h1>@Model.Name</h1>
+            <p class="hf-muted">@Model.Description</p>
+            <div class="hf-meta">
+                <span>Müşteri: @Model.CustomerName</span>
+                <span>Tamamlanma yılı: @Model.CompletionYear</span>
+            </div>
+        </div>
+        <div class="hf-detail-panel">
+            <div class="hf-card">
+                <h3>Proje notları</h3>
+                <ul class="hf-list">
+                    <li>Yerel güvenlik ve enerji standartlarına uyumlu tasarım</li>
+                    <li>Sahada kolay bakım için modüler gövde yapısı</li>
+                    <li>Işık kirliliğini azaltan optik seçenekler</li>
+                </ul>
+                <a class="hf-button" href="mailto:info@heperfiberli.com">İletişime geç</a>
+            </div>
+        </div>
+    </div>
+</section>

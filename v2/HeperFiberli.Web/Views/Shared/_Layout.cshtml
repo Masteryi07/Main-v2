@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HeperFiberli</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="hf-header">
+        <div class="hf-nav">
+            <div class="hf-logo">
+                <span class="hf-dot"></span>
+                <span class="hf-wordmark">HeperFiberli</span>
+            </div>
+            <nav>
+                <a href="/#products">Ürünler</a>
+                <a href="/#projects">Projeler</a>
+                <a href="#solutions">Çözümler</a>
+                <a href="#sectors">Sektörler</a>
+                <a href="#about">Hakkımızda</a>
+                <a href="#contact">İletişim</a>
+            </nav>
+        </div>
+    </header>
+    <div class="hf-body">
+        <main role="main" class="hf-main">
+            @RenderBody()
+        </main>
+        <footer class="hf-footer" id="contact">
+            <div class="hf-footer-grid">
+                <div>
+                    <div class="hf-logo">
+                        <span class="hf-dot"></span>
+                        <span class="hf-wordmark">HeperFiberli</span>
+                    </div>
+                    <p class="hf-muted">Işığın şehirlere kattığı anlamı teknoloji ve tasarımla buluşturuyoruz.</p>
+                </div>
+                <div>
+                    <h4>İletişim</h4>
+                    <p class="hf-muted">info@heperfiberli.com</p>
+                    <p class="hf-muted">+90 (312) 000 00 00</p>
+                </div>
+                <div id="solutions">
+                    <h4>Çözümler</h4>
+                    <p class="hf-muted">Akıllı kontrol, enerji verimliliği, güvenlik odaklı tasarım.</p>
+                </div>
+                <div id="sectors">
+                    <h4>Sektörler</h4>
+                    <p class="hf-muted">Kamu, ulaşım, endüstri, turizm ve peyzaj projeleri.</p>
+                </div>
+            </div>
+            <div class="hf-footer-bottom">
+                <span class="hf-muted">© @DateTime.UtcNow.Year HeperFiberli</span>
+                <div class="hf-links">
+                    <a href="/products">Ürün Kataloğu</a>
+                    <a href="/projects">Projeler</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

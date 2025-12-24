@@ -1,0 +1,59 @@
+@model ProjectIndexViewModel
+@{
+    ViewData["Title"] = "Projeler";
+}
+
+<section class="hf-section">
+    <div class="hf-section-header">
+        <div>
+            <p class="hf-kicker">Projeler</p>
+            <h1>Şehir ölçeğinde referanslar</h1>
+            <p class="hf-muted">Ülke veya tamamlanma yılına göre filtreleyin, detayları inceleyin.</p>
+        </div>
+        <a class="hf-link" href="/">Ana sayfa</a>
+    </div>
+
+    <form method="get" class="hf-filter">
+        <div class="hf-filter-group">
+            <label for="country">Ülke</label>
+            <select id="country" name="country">
+                <option value="">Tümü</option>
+                @foreach (var c in Model.Countries)
+                {
+                    <option value="@c" selected="@(Model.Country == c ? "selected" : null)">@c</option>
+                }
+            </select>
+        </div>
+        <div class="hf-filter-group">
+            <label for="year">Yıl</label>
+            <select id="year" name="year">
+                <option value="">Tümü</option>
+                @foreach (var y in Model.Years)
+                {
+                    <option value="@y" selected="@(Model.Year == y ? "selected" : null)">@y</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="hf-button">Filtrele</button>
+        <a class="hf-button ghost" href="@Url.Action("Index", "Projects")">Temizle</a>
+    </form>
+
+    <div class="hf-grid">
+        @foreach (var project in Model.Projects)
+        {
+            <div class="hf-card">
+                <div class="hf-card-top">
+                    <span class="hf-chip">@project.City</span>
+                    <span class="hf-chip ghost">@project.Country</span>
+                </div>
+                <h3>@project.Name</h3>
+                <p class="hf-muted">@project.Description</p>
+                <div class="hf-meta">
+                    <span>Müşteri: @project.CustomerName</span>
+                    <span>Yıl: @project.CompletionYear</span>
+                </div>
+                <a class="hf-link" href="@Url.Action("Details", new { id = project.Id })">Detay</a>
+            </div>
+        }
+    </div>
+</section>

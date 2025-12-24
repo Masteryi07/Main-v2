@@ -1,0 +1,38 @@
+@model Product
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<section class="hf-section">
+    <div class="hf-breadcrumb">
+        <a href="/">Ana sayfa</a>
+        <span>/</span>
+        <a href="/products">Ürünler</a>
+        <span>/</span>
+        <span>@Model.Name</span>
+    </div>
+
+    <div class="hf-detail">
+        <div>
+            <p class="hf-kicker">@Model.Category?.Name</p>
+            <h1>@Model.Name</h1>
+            <p class="hf-muted">@Model.Description</p>
+            <div class="hf-meta">
+                <span>Kod: @Model.Code</span>
+                <span>Güç: @Model.Watt W</span>
+                <span>Işık Akısı: @Model.Lumen lm</span>
+            </div>
+        </div>
+        <div class="hf-detail-panel">
+            <div class="hf-card">
+                <h3>Öne çıkan özellikler</h3>
+                <ul class="hf-list">
+                    <li>Enerji verimliliği ve uzun ömürlü LED modüller</li>
+                    <li>Akıllı kontrol opsiyonlarıyla adaptif dimleme</li>
+                    <li>Homojen ışık dağılımı ve düşük kamaşma</li>
+                </ul>
+                <a class="hf-button" href="mailto:info@heperfiberli.com">Teklif iste</a>
+            </div>
+        </div>
+    </div>
+</section>

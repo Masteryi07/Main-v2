@@ -1,0 +1,55 @@
+@model ProductIndexViewModel
+@{
+    ViewData["Title"] = "Ürünler";
+}
+
+<section class="hf-section">
+    <div class="hf-section-header">
+        <div>
+            <p class="hf-kicker">Ürün Kataloğu</p>
+            <h1>Armatür ailesi</h1>
+            <p class="hf-muted">Kategorilere göre filtreleyin veya kod, isim ya da açıklama ile arama yapın.</p>
+        </div>
+        <a class="hf-link" href="/">Ana sayfa</a>
+    </div>
+
+    <form method="get" class="hf-filter">
+        <div class="hf-filter-group">
+            <label for="categorySlug">Kategori</label>
+            <select id="categorySlug" name="categorySlug">
+                <option value="">Tümü</option>
+                @foreach (var category in Model.Categories)
+                {
+                    <option value="@category.Slug" selected="@(Model.CategorySlug == category.Slug ? "selected" : null)">
+                        @category.Name
+                    </option>
+                }
+            </select>
+        </div>
+        <div class="hf-filter-group">
+            <label for="q">Arama</label>
+            <input type="text" id="q" name="q" value="@Model.Query" placeholder="Kod, ad veya açıklama..." />
+        </div>
+        <button type="submit" class="hf-button">Filtrele</button>
+        <a class="hf-button ghost" href="@Url.Action("Index", "Products")">Temizle</a>
+    </form>
+
+    <div class="hf-grid">
+        @foreach (var product in Model.Products)
+        {
+            <div class="hf-card">
+                <div class="hf-card-top">
+                    <span class="hf-chip">@product.Category?.Name</span>
+                    <span class="hf-chip ghost">@product.Code</span>
+                </div>
+                <h3>@product.Name</h3>
+                <p class="hf-muted">@product.ShortDescription</p>
+                <div class="hf-meta">
+                    <span>@product.Watt W</span>
+                    <span>@product.Lumen lm</span>
+                </div>
+                <a class="hf-link" href="@Url.Action("Details", new { id = product.Id })">Detay</a>
+            </div>
+        }
+    </div>
+</section>
